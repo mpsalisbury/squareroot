@@ -230,6 +230,7 @@ func (b *Board) Config() string {
 func main() {
 	bs := []*Board{makeStartingBoard()}
 	seenBoards := make(map[string]bool)
+	numSkipped := 0
 	for {
 		if len(bs) == 0 {
 			fmt.Print("Couldn't find solution\n")
@@ -241,12 +242,13 @@ func main() {
 			nb := b.move(m)
 			nbConfig := nb.Config()
 			if seenBoards[nbConfig] {
+				numSkipped++
 				continue
 			}
-			//fmt.Printf("Checking board %s - %d\n", nbConfig, len(nb.mvs))
 			seenBoards[nbConfig] = true
 			if b.isWin() {
-				fmt.Printf("Found solution (%d moves):\n", len(b.mvs))
+				fmt.Printf("Found solution (%d moves, %d configurations, %d skipped):\n",
+					len(b.mvs), len(seenBoards), numSkipped)
 				for _, m := range b.mvs {
 					fmt.Printf("  %s\n", m.String())
 				}
@@ -255,10 +257,6 @@ func main() {
 			bs = append(bs, nb)
 		}
 	}
-}
-
-func makePiece(id string, x, y, w, h int) Piece {
-	return Piece{id, w, h, x, y}
 }
 
 // Returns the starting board configuration.
@@ -272,16 +270,16 @@ func makeStartingBoard() *Board {
 	// 4 |i  j|
 	//    ~~~~
 	ps := []Piece{
-		makePiece("a", 0, 0, 1, 2),
-		makePiece("b", 1, 0, 2, 2),
-		makePiece("c", 3, 0, 1, 2),
-		makePiece("d", 0, 2, 1, 2),
-		makePiece("e", 1, 2, 2, 1),
-		makePiece("f", 3, 2, 1, 2),
-		makePiece("g", 1, 3, 1, 1),
-		makePiece("h", 2, 3, 1, 1),
-		makePiece("i", 0, 4, 1, 1),
-		makePiece("j", 3, 4, 1, 1),
+		Piece{"a", 1, 2, 0, 0},
+		Piece{"b", 2, 2, 1, 0},
+		Piece{"c", 1, 2, 3, 0},
+		Piece{"d", 1, 2, 0, 2},
+		Piece{"e", 2, 1, 1, 2},
+		Piece{"f", 1, 2, 3, 2},
+		Piece{"g", 1, 1, 1, 3},
+		Piece{"h", 1, 1, 2, 3},
+		Piece{"i", 1, 1, 0, 4},
+		Piece{"j", 1, 1, 3, 4},
 	}
 	pm := make(map[string]Piece)
 	for _, p := range ps {
