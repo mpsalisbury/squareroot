@@ -22,19 +22,152 @@ import (
 	"strings"
 )
 
-type Direction int
+// Solution strategy:
+//
+// Maintain a queue of board configurations ordered by the number of moves taken to reach them.
+// Also maintain a set of board configurations we've already seen.
+// For the first board on the queue:
+//   Collect all legal moves
+//   For each remaining move:
+//     Apply the move to the current board -> nextBoard (move piece, record new move)
+//     If we've seen nextBoard before, skip it
+//     If mark nextBoard as seen
+//     If nextBoard is a winning configuration, print it, and we're done.
+//     Add nextBoard to the queue of boards to consider
+func main() {
+	bs := []*Board{makeStartingBoard()}
+	seenBoards := make(map[string]bool)
+	numSkipped := 0
+	for {
+		if len(bs) == 0 {
+			fmt.Print("Couldn't find solution\n")
+			return
+		}
+		b := bs[0]
+		bs = bs[1:]
+		for _, m := range b.possibleMoves() {
+			nb := b.move(m)
+			nbConfig := nb.Config()
+			if seenBoards[nbConfig] {
+				numSkipped++
+				continue
+			}
+			seenBoards[nbConfig] = true
+			if b.isWin() {
+				fmt.Printf("Found solution (%d moves, %d configurations, %d skipped):\n",
+					len(b.mvs), len(seenBoards), numSkipped)
+				for _, m := range b.mvs {
+					fmt.Printf("  %s\n", m.String())
+				}
+				return
+			}
+			bs = append(bs, nb)
+		}
+	}
+}
 
-const (
-	Up Direction = iota
-	Down
-	Left
-	Right
-)
+// Returns the starting board configuration.
+func makeStartingBoard() *Board {
+	//    0123
+	//    ____
+	// 0 |abbc|
+	// 1 |abbc|
+	// 2 |deef|
+	// 3 |dghf|
+	// 4 |i  j|
+	//    ~~~~
+	ps := []Piece{
+		Piece{"a", 1, 2, 0, 0},
+		Piece{"b", 2, 2, 1, 0},
+		Piece{"c", 1, 2, 3, 0},
+		Piece{"d", 1, 2, 0, 2},
+		Piece{"e", 2, 1, 1, 2},
+		Piece{"f", 1, 2, 3, 2},
+		Piece{"g", 1, 1, 1, 3},
+		Piece{"h", 1, 1, 2, 3},
+		Piece{"i", 1, 1, 0, 4},
+		Piece{"j", 1, 1, 3, 4},
+	}
+	pm := make(map[string]Piece)
+	for _, p := range ps {
+		pm[p.id] = p
+	}
 
-var Directions = []Direction{Up, Down, Left, Right}
+	return &Board{4, 5, pm, []Move{}}
+}
 
-func (d Direction) String() string {
-	return []string{"Up", "Down", "Left", "Right"}[d]
+// Records the configuration of a board and how it got there (set of moves).
+type Board struct {
+	// The size of the board.
+	w, h int
+
+	// The pieces on the board.
+	ps map[string]Piece
+
+	// The moves used to get the pieces where they are.
+	mvs []Move
+}
+
+// Is the given space unoccupied by a piece on this board.
+func (b *Board) isOpen(s Space) bool {
+	if s.x < 0 || s.y < 0 || s.x >= b.w || s.y >= b.h {
+		return false
+	}
+	for _, p := range b.ps {
+		if p.covers(s) {
+			return false
+		}
+	}
+	return true
+}
+
+// Returns the set of legal moves of pieces given this board configuration.
+func (b *Board) possibleMoves() []Move {
+	mvs := []Move{}
+	for _, p := range b.ps {
+		pmvs := p.possibleMoves(b)
+		mvs = append(mvs, pmvs...)
+	}
+	return mvs
+}
+
+// Returns a new board the same as this one but with the given move applied.
+func (b *Board) move(m Move) *Board {
+	// The new pieces are the old pieces with one piece moved.
+	nps := make(map[string]Piece)
+	for pid, p := range b.ps {
+		if pid == m.pid {
+			nps[pid] = p.move(m.dir)
+		} else {
+			nps[pid] = p
+		}
+	}
+	// The new moves are the old moves plus the new move.
+	nmvs := []Move{}
+	for _, m := range b.mvs {
+		nmvs = append(nmvs, m)
+	}
+	nmvs = append(nmvs, m)
+
+	return &Board{b.w, b.h, nps, nmvs}
+}
+
+// Is the current board position a winning configuration.
+func (b *Board) isWin() bool {
+	pb := b.ps["b"]
+	return pb.x == 1 && pb.y == 3
+}
+
+// Config returns the configuration of the pieces on the given board.
+// We use this to record which configurations we've already considered
+// so that we don't consider them again.
+func (b *Board) Config() string {
+	pcs := []string{}
+	for _, p := range b.ps {
+		pcs = append(pcs, p.Config())
+	}
+	sort.Strings(pcs)
+	return strings.Join(pcs, ";")
 }
 
 // Piece records the id and configuration of a piece.
@@ -141,150 +274,17 @@ func (m Move) String() string {
 	return fmt.Sprintf("%s -> %s", m.pid, m.dir)
 }
 
-// Records the configuration of a board and how it got there (set of moves).
-type Board struct {
-	// The size of the board.
-	w, h int
+type Direction int
 
-	// The pieces on the board.
-	ps map[string]Piece
+const (
+	Up Direction = iota
+	Down
+	Left
+	Right
+)
 
-	// The moves used to get the pieces where they are.
-	mvs []Move
-}
+var Directions = []Direction{Up, Down, Left, Right}
 
-// Is the given space unoccupied by a piece on this board.
-func (b *Board) isOpen(s Space) bool {
-	if s.x < 0 || s.y < 0 || s.x >= b.w || s.y >= b.h {
-		return false
-	}
-	for _, p := range b.ps {
-		if p.covers(s) {
-			return false
-		}
-	}
-	return true
-}
-
-// Returns the set of legal moves of pieces given this board configuration.
-func (b *Board) possibleMoves() []Move {
-	mvs := []Move{}
-	for _, p := range b.ps {
-		pmvs := p.possibleMoves(b)
-		mvs = append(mvs, pmvs...)
-	}
-	return mvs
-}
-
-// Returns a new board the same as this one but with the given move applied.
-func (b *Board) move(m Move) *Board {
-	// The new pieces are the old pieces with one piece moved.
-	nps := make(map[string]Piece)
-	for pid, p := range b.ps {
-		if pid == m.pid {
-			nps[pid] = p.move(m.dir)
-		} else {
-			nps[pid] = p
-		}
-	}
-	// The new moves are the old moves plus the new move.
-	nmvs := []Move{}
-	for _, m := range b.mvs {
-		nmvs = append(nmvs, m)
-	}
-	nmvs = append(nmvs, m)
-
-	return &Board{b.w, b.h, nps, nmvs}
-}
-
-// Is the current board position a winning configuration.
-func (b *Board) isWin() bool {
-	pb := b.ps["b"]
-	return pb.x == 1 && pb.y == 3
-}
-
-// Config returns the configuration of the pieces on the given board.
-// We use this to record which configurations we've already considered
-// so that we don't consider them again.
-func (b *Board) Config() string {
-	pcs := []string{}
-	for _, p := range b.ps {
-		pcs = append(pcs, p.Config())
-	}
-	sort.Strings(pcs)
-	return strings.Join(pcs, ";")
-}
-
-// Solution strategy:
-//
-// Maintain a queue of board configurations ordered by the number of moves taken to reach them.
-// Also maintain a set of board configurations we've already seen.
-// For the first board on the queue:
-//   Collect all legal moves
-//   For each remaining move:
-//     Apply the move to the current board -> nextBoard (move piece, record new move)
-//     If we've seen nextBoard before, skip it
-//     If mark nextBoard as seen
-//     If nextBoard is a winning configuration, print it, and we're done.
-//     Add nextBoard to the queue of boards to consider
-func main() {
-	bs := []*Board{makeStartingBoard()}
-	seenBoards := make(map[string]bool)
-	numSkipped := 0
-	for {
-		if len(bs) == 0 {
-			fmt.Print("Couldn't find solution\n")
-			return
-		}
-		b := bs[0]
-		bs = bs[1:]
-		for _, m := range b.possibleMoves() {
-			nb := b.move(m)
-			nbConfig := nb.Config()
-			if seenBoards[nbConfig] {
-				numSkipped++
-				continue
-			}
-			seenBoards[nbConfig] = true
-			if b.isWin() {
-				fmt.Printf("Found solution (%d moves, %d configurations, %d skipped):\n",
-					len(b.mvs), len(seenBoards), numSkipped)
-				for _, m := range b.mvs {
-					fmt.Printf("  %s\n", m.String())
-				}
-				return
-			}
-			bs = append(bs, nb)
-		}
-	}
-}
-
-// Returns the starting board configuration.
-func makeStartingBoard() *Board {
-	//    0123
-	//    ____
-	// 0 |abbc|
-	// 1 |abbc|
-	// 2 |deef|
-	// 3 |dghf|
-	// 4 |i  j|
-	//    ~~~~
-	ps := []Piece{
-		Piece{"a", 1, 2, 0, 0},
-		Piece{"b", 2, 2, 1, 0},
-		Piece{"c", 1, 2, 3, 0},
-		Piece{"d", 1, 2, 0, 2},
-		Piece{"e", 2, 1, 1, 2},
-		Piece{"f", 1, 2, 3, 2},
-		Piece{"g", 1, 1, 1, 3},
-		Piece{"h", 1, 1, 2, 3},
-		Piece{"i", 1, 1, 0, 4},
-		Piece{"j", 1, 1, 3, 4},
-	}
-	pm := make(map[string]Piece)
-	for _, p := range ps {
-		pm[p.id] = p
-	}
-
-	return &Board{4, 5, pm, []Move{}}
+func (d Direction) String() string {
+	return []string{"Up", "Down", "Left", "Right"}[d]
 }
