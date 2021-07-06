@@ -56,13 +56,21 @@ func main() {
 			if b.isWin() {
 				fmt.Printf("Found solution (%d moves, %d configurations, %d skipped):\n",
 					len(b.mvs), len(seenBoards), numSkipped)
-				for _, m := range b.mvs {
-					fmt.Printf("  %s\n", m.String())
-				}
+				printMoves(b.mvs)
 				return
 			}
 			bs = append(bs, nb)
 		}
+	}
+}
+
+func printMoves(mvs []Move) {
+	b := makeStartingBoard()
+	fmt.Print(b.String())
+	for _, m := range mvs {
+		fmt.Printf("%s\n", m.String())
+		b = b.move(m)
+		fmt.Print(b.String())
 	}
 }
 
@@ -170,6 +178,38 @@ func (b *Board) Config() string {
 	return strings.Join(pcs, ";")
 }
 
+// Returns a spatial representation of the board. e.g.:
+//  ____
+// |abbc|
+// |abbc|
+// |deef|
+// |dghf|
+// |i  j|
+//  ~~~~
+func (b *Board) String() string {
+	grid := makeGrid(b.w, b.h)
+	for _, p := range b.ps {
+		p.drawInto(grid)
+	}
+
+	var sb strings.Builder
+	sb.WriteString(" ")
+	sb.WriteString(strings.Repeat("_", b.w))
+	sb.WriteString("\n")
+
+	for i := 0; i < b.h; i++ {
+		sb.WriteString("|")
+		sb.WriteString(grid.row(i))
+		sb.WriteString("|\n")
+	}
+
+	sb.WriteString(" ")
+	sb.WriteString(strings.Repeat("~", b.w))
+	sb.WriteString("\n")
+
+	return sb.String()
+}
+
 // Piece records the id and configuration of a piece.
 type Piece struct {
 	id   string
@@ -183,6 +223,14 @@ type Piece struct {
 // which because any piece of the same shape is equivalent for the solution.
 func (p Piece) Config() string {
 	return fmt.Sprintf("%dx%d-%d,%d", p.w, p.h, p.x, p.y)
+}
+
+func (p Piece) drawInto(grid *Grid) {
+	for y := 0; y < p.h; y++ {
+		for x := 0; x < p.w; x++ {
+			grid.set(p.x+x, p.y+y, p.id[0])
+		}
+	}
 }
 
 // Is this piece free to move in the given direction on this board.
@@ -287,4 +335,33 @@ var Directions = []Direction{Up, Down, Left, Right}
 
 func (d Direction) String() string {
 	return []string{"Up", "Down", "Left", "Right"}[d]
+}
+
+// Grid holds a visual representation of a Board.
+type Grid struct {
+	w, h int
+	c    [][]byte
+}
+
+func makeGrid(w, h int) *Grid {
+	c := [][]byte{}
+	for y := 0; y < h; y++ {
+		row := make([]byte, w)
+		for x := 0; x < w; x++ {
+			row[x] = ' '
+		}
+		c = append(c, row)
+	}
+	return &Grid{w, h, c}
+}
+
+func (g *Grid) set(x, y int, c byte) {
+	if x < 0 || y < 0 || x >= g.w || y >= g.h {
+		return
+	}
+	g.c[y][x] = c
+}
+
+func (g *Grid) row(y int) string {
+	return string(g.c[y])
 }
