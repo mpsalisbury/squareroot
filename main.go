@@ -67,8 +67,8 @@ func main() {
 func printMoves(mvs []Move) {
 	b := makeStartingBoard()
 	fmt.Print(b.String())
-	for _, m := range mvs {
-		fmt.Printf("%s\n", m.String())
+	for i, m := range mvs {
+		fmt.Printf("%d: %s\n", i+1, m.String())
 		b = b.move(m)
 		fmt.Print(b.String())
 	}
