@@ -1,0 +1,936 @@
+Found solution (116 moves, 24062 configurations, 53854 skipped):
+ ____
+|abbc|
+|abbc|
+|deef|
+|dghf|
+|i  j|
+ ~~~~
+1: j -> Left
+ ____
+|abbc|
+|abbc|
+|deef|
+|dghf|
+|i j |
+ ~~~~
+2: f -> Down
+ ____
+|abbc|
+|abbc|
+|dee |
+|dghf|
+|i jf|
+ ~~~~
+3: e -> Right
+ ____
+|abbc|
+|abbc|
+|d ee|
+|dghf|
+|i jf|
+ ~~~~
+4: i -> Right
+ ____
+|abbc|
+|abbc|
+|d ee|
+|dghf|
+| ijf|
+ ~~~~
+5: g -> Up
+ ____
+|abbc|
+|abbc|
+|dgee|
+|d hf|
+| ijf|
+ ~~~~
+6: d -> Down
+ ____
+|abbc|
+|abbc|
+| gee|
+|d hf|
+|dijf|
+ ~~~~
+7: g -> Left
+ ____
+|abbc|
+|abbc|
+|g ee|
+|d hf|
+|dijf|
+ ~~~~
+8: e -> Left
+ ____
+|abbc|
+|abbc|
+|gee |
+|d hf|
+|dijf|
+ ~~~~
+9: f -> Up
+ ____
+|abbc|
+|abbc|
+|geef|
+|d hf|
+|dij |
+ ~~~~
+10: j -> Right
+ ____
+|abbc|
+|abbc|
+|geef|
+|d hf|
+|di j|
+ ~~~~
+11: i -> Right
+ ____
+|abbc|
+|abbc|
+|geef|
+|d hf|
+|d ij|
+ ~~~~
+12: d -> Right
+ ____
+|abbc|
+|abbc|
+|geef|
+| dhf|
+| dij|
+ ~~~~
+13: g -> Down
+ ____
+|abbc|
+|abbc|
+| eef|
+|gdhf|
+| dij|
+ ~~~~
+14: g -> Down
+ ____
+|abbc|
+|abbc|
+| eef|
+| dhf|
+|gdij|
+ ~~~~
+15: e -> Left
+ ____
+|abbc|
+|abbc|
+|ee f|
+| dhf|
+|gdij|
+ ~~~~
+16: h -> Up
+ ____
+|abbc|
+|abbc|
+|eehf|
+| d f|
+|gdij|
+ ~~~~
+17: i -> Up
+ ____
+|abbc|
+|abbc|
+|eehf|
+| dif|
+|gd j|
+ ~~~~
+18: j -> Left
+ ____
+|abbc|
+|abbc|
+|eehf|
+| dif|
+|gdj |
+ ~~~~
+19: f -> Down
+ ____
+|abbc|
+|abbc|
+|eeh |
+| dif|
+|gdjf|
+ ~~~~
+20: h -> Right
+ ____
+|abbc|
+|abbc|
+|ee h|
+| dif|
+|gdjf|
+ ~~~~
+21: e -> Right
+ ____
+|abbc|
+|abbc|
+| eeh|
+| dif|
+|gdjf|
+ ~~~~
+22: a -> Down
+ ____
+| bbc|
+|abbc|
+|aeeh|
+| dif|
+|gdjf|
+ ~~~~
+23: a -> Down
+ ____
+| bbc|
+| bbc|
+|aeeh|
+|adif|
+|gdjf|
+ ~~~~
+24: b -> Left
+ ____
+|bb c|
+|bb c|
+|aeeh|
+|adif|
+|gdjf|
+ ~~~~
+25: c -> Left
+ ____
+|bbc |
+|bbc |
+|aeeh|
+|adif|
+|gdjf|
+ ~~~~
+26: h -> Up
+ ____
+|bbc |
+|bbch|
+|aee |
+|adif|
+|gdjf|
+ ~~~~
+27: h -> Up
+ ____
+|bbch|
+|bbc |
+|aee |
+|adif|
+|gdjf|
+ ~~~~
+28: f -> Up
+ ____
+|bbch|
+|bbc |
+|aeef|
+|adif|
+|gdj |
+ ~~~~
+29: f -> Up
+ ____
+|bbch|
+|bbcf|
+|aeef|
+|adi |
+|gdj |
+ ~~~~
+30: i -> Right
+ ____
+|bbch|
+|bbcf|
+|aeef|
+|ad i|
+|gdj |
+ ~~~~
+31: j -> Right
+ ____
+|bbch|
+|bbcf|
+|aeef|
+|ad i|
+|gd j|
+ ~~~~
+32: d -> Right
+ ____
+|bbch|
+|bbcf|
+|aeef|
+|a di|
+|g dj|
+ ~~~~
+33: g -> Right
+ ____
+|bbch|
+|bbcf|
+|aeef|
+|a di|
+| gdj|
+ ~~~~
+34: g -> Up
+ ____
+|bbch|
+|bbcf|
+|aeef|
+|agdi|
+|  dj|
+ ~~~~
+35: a -> Down
+ ____
+|bbch|
+|bbcf|
+| eef|
+|agdi|
+|a dj|
+ ~~~~
+36: e -> Left
+ ____
+|bbch|
+|bbcf|
+|ee f|
+|agdi|
+|a dj|
+ ~~~~
+37: d -> Up
+ ____
+|bbch|
+|bbcf|
+|eedf|
+|agdi|
+|a  j|
+ ~~~~
+38: j -> Left
+ ____
+|bbch|
+|bbcf|
+|eedf|
+|agdi|
+|a j |
+ ~~~~
+39: j -> Left
+ ____
+|bbch|
+|bbcf|
+|eedf|
+|agdi|
+|aj  |
+ ~~~~
+40: d -> Down
+ ____
+|bbch|
+|bbcf|
+|ee f|
+|agdi|
+|ajd |
+ ~~~~
+41: c -> Down
+ ____
+|bb h|
+|bbcf|
+|eecf|
+|agdi|
+|ajd |
+ ~~~~
+42: h -> Left
+ ____
+|bbh |
+|bbcf|
+|eecf|
+|agdi|
+|ajd |
+ ~~~~
+43: f -> Up
+ ____
+|bbhf|
+|bbcf|
+|eec |
+|agdi|
+|ajd |
+ ~~~~
+44: i -> Up
+ ____
+|bbhf|
+|bbcf|
+|eeci|
+|agd |
+|ajd |
+ ~~~~
+45: d -> Right
+ ____
+|bbhf|
+|bbcf|
+|eeci|
+|ag d|
+|aj d|
+ ~~~~
+46: c -> Down
+ ____
+|bbhf|
+|bb f|
+|eeci|
+|agcd|
+|aj d|
+ ~~~~
+47: c -> Down
+ ____
+|bbhf|
+|bb f|
+|ee i|
+|agcd|
+|ajcd|
+ ~~~~
+48: i -> Left
+ ____
+|bbhf|
+|bb f|
+|eei |
+|agcd|
+|ajcd|
+ ~~~~
+49: i -> Up
+ ____
+|bbhf|
+|bbif|
+|ee  |
+|agcd|
+|ajcd|
+ ~~~~
+50: e -> Right
+ ____
+|bbhf|
+|bbif|
+| ee |
+|agcd|
+|ajcd|
+ ~~~~
+51: e -> Right
+ ____
+|bbhf|
+|bbif|
+|  ee|
+|agcd|
+|ajcd|
+ ~~~~
+52: a -> Up
+ ____
+|bbhf|
+|bbif|
+|a ee|
+|agcd|
+| jcd|
+ ~~~~
+53: j -> Left
+ ____
+|bbhf|
+|bbif|
+|a ee|
+|agcd|
+|j cd|
+ ~~~~
+54: g -> Down
+ ____
+|bbhf|
+|bbif|
+|a ee|
+|a cd|
+|jgcd|
+ ~~~~
+55: a -> Right
+ ____
+|bbhf|
+|bbif|
+| aee|
+| acd|
+|jgcd|
+ ~~~~
+56: j -> Up
+ ____
+|bbhf|
+|bbif|
+| aee|
+|jacd|
+| gcd|
+ ~~~~
+57: g -> Left
+ ____
+|bbhf|
+|bbif|
+| aee|
+|jacd|
+|g cd|
+ ~~~~
+58: a -> Down
+ ____
+|bbhf|
+|bbif|
+|  ee|
+|jacd|
+|gacd|
+ ~~~~
+59: e -> Left
+ ____
+|bbhf|
+|bbif|
+| ee |
+|jacd|
+|gacd|
+ ~~~~
+60: e -> Left
+ ____
+|bbhf|
+|bbif|
+|ee  |
+|jacd|
+|gacd|
+ ~~~~
+61: f -> Down
+ ____
+|bbh |
+|bbif|
+|ee f|
+|jacd|
+|gacd|
+ ~~~~
+62: c -> Up
+ ____
+|bbh |
+|bbif|
+|eecf|
+|jacd|
+|ga d|
+ ~~~~
+63: h -> Right
+ ____
+|bb h|
+|bbif|
+|eecf|
+|jacd|
+|ga d|
+ ~~~~
+64: i -> Up
+ ____
+|bbih|
+|bb f|
+|eecf|
+|jacd|
+|ga d|
+ ~~~~
+65: c -> Up
+ ____
+|bbih|
+|bbcf|
+|eecf|
+|ja d|
+|ga d|
+ ~~~~
+66: a -> Right
+ ____
+|bbih|
+|bbcf|
+|eecf|
+|j ad|
+|g ad|
+ ~~~~
+67: g -> Right
+ ____
+|bbih|
+|bbcf|
+|eecf|
+|j ad|
+| gad|
+ ~~~~
+68: j -> Down
+ ____
+|bbih|
+|bbcf|
+|eecf|
+|  ad|
+|jgad|
+ ~~~~
+69: e -> Down
+ ____
+|bbih|
+|bbcf|
+|  cf|
+|eead|
+|jgad|
+ ~~~~
+70: b -> Down
+ ____
+|  ih|
+|bbcf|
+|bbcf|
+|eead|
+|jgad|
+ ~~~~
+71: i -> Left
+ ____
+| i h|
+|bbcf|
+|bbcf|
+|eead|
+|jgad|
+ ~~~~
+72: i -> Left
+ ____
+|i  h|
+|bbcf|
+|bbcf|
+|eead|
+|jgad|
+ ~~~~
+73: h -> Left
+ ____
+|i h |
+|bbcf|
+|bbcf|
+|eead|
+|jgad|
+ ~~~~
+74: f -> Up
+ ____
+|i hf|
+|bbcf|
+|bbc |
+|eead|
+|jgad|
+ ~~~~
+75: h -> Left
+ ____
+|ih f|
+|bbcf|
+|bbc |
+|eead|
+|jgad|
+ ~~~~
+76: d -> Up
+ ____
+|ih f|
+|bbcf|
+|bbcd|
+|eead|
+|jga |
+ ~~~~
+77: c -> Up
+ ____
+|ihcf|
+|bbcf|
+|bb d|
+|eead|
+|jga |
+ ~~~~
+78: a -> Up
+ ____
+|ihcf|
+|bbcf|
+|bbad|
+|eead|
+|jg  |
+ ~~~~
+79: g -> Right
+ ____
+|ihcf|
+|bbcf|
+|bbad|
+|eead|
+|j g |
+ ~~~~
+80: j -> Right
+ ____
+|ihcf|
+|bbcf|
+|bbad|
+|eead|
+| jg |
+ ~~~~
+81: g -> Right
+ ____
+|ihcf|
+|bbcf|
+|bbad|
+|eead|
+| j g|
+ ~~~~
+82: j -> Right
+ ____
+|ihcf|
+|bbcf|
+|bbad|
+|eead|
+|  jg|
+ ~~~~
+83: e -> Down
+ ____
+|ihcf|
+|bbcf|
+|bbad|
+|  ad|
+|eejg|
+ ~~~~
+84: b -> Down
+ ____
+|ihcf|
+|  cf|
+|bbad|
+|bbad|
+|eejg|
+ ~~~~
+85: h -> Down
+ ____
+|i cf|
+| hcf|
+|bbad|
+|bbad|
+|eejg|
+ ~~~~
+86: h -> Left
+ ____
+|i cf|
+|h cf|
+|bbad|
+|bbad|
+|eejg|
+ ~~~~
+87: c -> Left
+ ____
+|ic f|
+|hc f|
+|bbad|
+|bbad|
+|eejg|
+ ~~~~
+88: a -> Up
+ ____
+|ic f|
+|hcaf|
+|bbad|
+|bb d|
+|eejg|
+ ~~~~
+89: a -> Up
+ ____
+|icaf|
+|hcaf|
+|bb d|
+|bb d|
+|eejg|
+ ~~~~
+90: b -> Right
+ ____
+|icaf|
+|hcaf|
+| bbd|
+| bbd|
+|eejg|
+ ~~~~
+91: h -> Down
+ ____
+|icaf|
+| caf|
+|hbbd|
+| bbd|
+|eejg|
+ ~~~~
+92: h -> Down
+ ____
+|icaf|
+| caf|
+| bbd|
+|hbbd|
+|eejg|
+ ~~~~
+93: i -> Down
+ ____
+| caf|
+|icaf|
+| bbd|
+|hbbd|
+|eejg|
+ ~~~~
+94: i -> Down
+ ____
+| caf|
+| caf|
+|ibbd|
+|hbbd|
+|eejg|
+ ~~~~
+95: c -> Left
+ ____
+|c af|
+|c af|
+|ibbd|
+|hbbd|
+|eejg|
+ ~~~~
+96: a -> Left
+ ____
+|ca f|
+|ca f|
+|ibbd|
+|hbbd|
+|eejg|
+ ~~~~
+97: f -> Left
+ ____
+|caf |
+|caf |
+|ibbd|
+|hbbd|
+|eejg|
+ ~~~~
+98: d -> Up
+ ____
+|caf |
+|cafd|
+|ibbd|
+|hbb |
+|eejg|
+ ~~~~
+99: d -> Up
+ ____
+|cafd|
+|cafd|
+|ibb |
+|hbb |
+|eejg|
+ ~~~~
+100: b -> Right
+ ____
+|cafd|
+|cafd|
+|i bb|
+|h bb|
+|eejg|
+ ~~~~
+101: i -> Right
+ ____
+|cafd|
+|cafd|
+| ibb|
+|h bb|
+|eejg|
+ ~~~~
+102: h -> Up
+ ____
+|cafd|
+|cafd|
+|hibb|
+|  bb|
+|eejg|
+ ~~~~
+103: e -> Up
+ ____
+|cafd|
+|cafd|
+|hibb|
+|eebb|
+|  jg|
+ ~~~~
+104: j -> Left
+ ____
+|cafd|
+|cafd|
+|hibb|
+|eebb|
+| j g|
+ ~~~~
+105: g -> Left
+ ____
+|cafd|
+|cafd|
+|hibb|
+|eebb|
+| jg |
+ ~~~~
+106: j -> Left
+ ____
+|cafd|
+|cafd|
+|hibb|
+|eebb|
+|j g |
+ ~~~~
+107: g -> Left
+ ____
+|cafd|
+|cafd|
+|hibb|
+|eebb|
+|jg  |
+ ~~~~
+108: b -> Down
+ ____
+|cafd|
+|cafd|
+|hi  |
+|eebb|
+|jgbb|
+ ~~~~
+109: i -> Right
+ ____
+|cafd|
+|cafd|
+|h i |
+|eebb|
+|jgbb|
+ ~~~~
+110: i -> Right
+ ____
+|cafd|
+|cafd|
+|h  i|
+|eebb|
+|jgbb|
+ ~~~~
+111: h -> Right
+ ____
+|cafd|
+|cafd|
+| h i|
+|eebb|
+|jgbb|
+ ~~~~
+112: h -> Right
+ ____
+|cafd|
+|cafd|
+|  hi|
+|eebb|
+|jgbb|
+ ~~~~
+113: e -> Up
+ ____
+|cafd|
+|cafd|
+|eehi|
+|  bb|
+|jgbb|
+ ~~~~
+114: g -> Up
+ ____
+|cafd|
+|cafd|
+|eehi|
+| gbb|
+|j bb|
+ ~~~~
+115: g -> Left
+ ____
+|cafd|
+|cafd|
+|eehi|
+|g bb|
+|j bb|
+ ~~~~
+116: b -> Left
+ ____
+|cafd|
+|cafd|
+|eehi|
+|gbb |
+|jbb |
+ ~~~~

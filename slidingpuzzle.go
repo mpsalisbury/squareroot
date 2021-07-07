@@ -1,6 +1,6 @@
 package main
 
-// Solve the Square Root sliding block puzzle.
+// Solve the Square Root sliding block puzzle. http://squarerootgames.com/puzzles.html
 // Starting position:
 //  ____
 // |abbc|
@@ -14,7 +14,7 @@ package main
 // Pieces can slide left/right/up/down within the bounds of the frame. They cannot
 // rotate. A piece can slide if its target space is open. The goal is to move piece b
 // to the bottom middle spot on the board where it can slide out of the puzzle.
-// Find a sequence of moves gets piece b to the bottom middle?
+// Find a sequence of moves gets piece b to the bottom middle.
 
 import (
 	"fmt"
@@ -28,10 +28,10 @@ import (
 // Also maintain a set of board configurations we've already seen.
 // For the first board on the queue:
 //   Collect all legal moves
-//   For each remaining move:
+//   For each move:
 //     Apply the move to the current board -> nextBoard (move piece, record new move)
 //     If we've seen nextBoard before, skip it
-//     If mark nextBoard as seen
+//     Mark nextBoard as seen
 //     If nextBoard is a winning configuration, print it, and we're done.
 //     Add nextBoard to the queue of boards to consider
 func main() {
