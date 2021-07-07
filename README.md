@@ -4,13 +4,15 @@
 (See [physical puzzle](http://squarerootgames.com/puzzles.html))
 
 Starting position:
-     ____
-    |abbc|
-    |abbc|
-    |deef|
-    |dghf|
-    |i  j|
-     ~~~~
+```
+ ____
+|abbc|
+|abbc|
+|deef|
+|dghf|
+|i  j|
+ ~~~~
+ ```
 
 Each letter represents a piece that occupies the given spaces on the board.
 Pieces can slide left/right/up/down within the bounds of the frame. They cannot
